@@ -1,0 +1,207 @@
+import:
+  - ../TOMBaseStyles/TOMSourceProd.yaml?a=2
+  - ../TOMBaseStyles/TOMLight.yaml??a=4
+
+layers:
+    roads:
+        data: { source: mapzen }
+        filter:
+          $zoom:
+              min: 1
+              max: 25
+          not: { kind: ferry }
+        draw:
+            lines:
+                order: 2
+                color: 'gray'
+                width: 5
+
+        highway:
+            filter:
+                kind: [highway]
+                not:
+                    kind_detail: [trunk,motorway_link,trunk_link]
+                $zoom:
+                    max: 25
+            draw:
+                lines:
+                    order: 3
+                    color: red
+                    width: 20
+# maastricht A2 project
+        maastricht:
+            filter:
+                kind: [major_road]
+                network: "e-road"
+                $zoom:
+                    max: 25
+            draw:
+                lines:
+                    order: 3
+                    color: red
+                    width: 20
+        major_road_trunk:
+            filter:
+                kind: major_road
+                kind_detail: trunk
+                not:
+                    kind: highway
+                $zoom:
+                    min: 13
+                    max: 25
+            draw:
+                lines:
+                    order: 5
+                    color: red
+                    width: 10
+        major_road:
+            filter:
+#                kind: [major_road]
+                kind_detail: [primary]
+                not:
+                    kind: highway
+                $zoom:
+                    min: 13
+                    max: 25
+            draw:
+                lines:
+                    order: 5
+                    color: red
+                    width: 10
+        labels:
+            filter:
+                name: true
+                aeroway: false
+                tunnel: false
+                railway: false
+                $zoom:
+                    min: 15
+                    max: 25
+                not: { kind: rail }
+            draw:
+                text:
+                    font:
+                        fill: black
+                        family: Helvetica
+                        size: 11px
+
+            highway:
+                filter: { kind: highway }
+                draw:
+                    text:
+                        font:
+                            size: 12px
+                            weight: bold
+    landuse:
+        data: { source: mapzen }
+        filter:
+            $zoom:
+                min: 1
+                max: 20
+        draw:
+            polygons:
+                order: 1
+        residential:
+            filter:
+                kind: [residential,urban_area,urban,village_green,garden]
+            draw:
+                order: 3
+                polygons:
+                    color: [1,1,0,.5]
+        commercial:
+            filter:
+                kind: [commercial,farm,farmyard,fuel,retail]
+            draw:
+                polygons:
+                    color: [1,0,1,.5]
+        infrastructure:
+            filter:
+                kind: [city_wall,bridge,aerodrome,aviary,dam,generator,military,substation,snow_fence,taxiway,tower,trail_riding_station,pier,railway,retaining_wall,runway,parking,fence,footway,gate,pedestrian,groyne,enclosure,apron]
+            draw:
+                polygons:
+                    color: [0,0,0,.5]
+        nature:
+            filter:
+                kind: [nature_reserve,allotments,animal,beach,breakwater,farmland,forest,glacier,grass,meadow,national_park,nature_reserve,natural_forest,natural_park,natural_wood,park,wetland,wildlife_park,wood,protected_area,rock,scrub,rural,scree,stone,cutline,land]
+            draw:
+                order: 4
+                polygons:
+                    color: [0,1,0,.5]
+        public:
+            filter:
+                kind: [battlefield,cemetery,college,common,dike,fort,grave_yard,hospital,library,playground,place_of_worship,prison,pitch,recreation_ground,artwork,school,university]
+            draw:
+                polygons:
+                    color: [0,0,1,.5]
+        industrial:
+            filter:
+                kind: [industrial,water_works,wastewater_plant,works,plant,quarry,service_area]
+            draw:
+                polygons:
+                    color: [.3,0,.3,.5]
+        leisure:
+            filter:
+                kind: [maze,petting_zoo,picnic_site,recreation_track,resort,rest_area,roller_coaster,sports_centre,stadium,summer_toboggan,theatre,theme_park,water_park,water_slide,winery,winter_sports,zoo,hanami,carousel,camp_site,caravan_site,dog_park,wilderness_hut,amusement_ride,aquarium,attraction,cinema,golf_course]
+            draw:
+                polygons:
+                    color: [.2,1,1,.5]
+    buildings:
+        data: { source: mapzen , layer: buildings}
+#        wikiicon:
+#            filter :
+#                wikipedia: true
+#            draw:
+#                ui-icons-overlay:
+#                    size: 16px
+#                    visible: true
+#                    sprite: wikipedia
+        publicbuildings:
+            filter:
+                kind_detail: [civic,clubhouse,sports_centre,temple,place_of_worship,palace,transportation,sportcentre,sportscenter,fire_station,station,medical,hospital,public,school,government,library,courthouse,university,museum,train_station,public_building,chapel,church,mosque,cathedral,community,city_hall,stadium]
+            draw:
+                lines:
+                    color: black
+                    size: .01
+                polygons:
+                    color: "#2422B6"
+        residential:
+            filter:
+                kind_detail: [residential,house,houseboat,boathouse,apartments]
+            draw:
+                lines:
+                    color: black
+                    size: .01
+                polygons:
+                    color: yellow
+        infrastructure:
+            filter:
+                kind_detail: [water_tower,toilet,silo,barn,storage,boat,container,tunnel,guard_house,pontoon,datacenter,watch_house,gate,pump_house,viaduct,ramp,beehive,shelter,gatehouse]
+            draw:
+                lines:
+                    color: black
+                    size: .01
+                polygons:
+                    color: black
+        commercial:
+            filter:
+                kind_detail: [shop,retail,bank,commercial,hotel,office]
+            draw:
+                lines:
+                    color: black
+                    size: .01
+                polygons:
+                    color: magenta
+        industrial:
+            filter:
+                kind_detail: [manufacture,factory,store,henhouse,industrial,storage_tank,warehouse]
+            draw:
+                lines:
+                    color: black
+                    size: .01
+                polygons:
+                    color: '#800080'
+        draw:
+            polygons:
+                order: 50
+                color: '#bbb'
+                interactive: true

@@ -1,0 +1,11 @@
+locale: nl
+phrases:
+    scenes:
+        TOMBuildingTypologies:
+            name: Stedelijke Typologieën
+            group: Planologie
+            description: >
+                Deze kaart groepeert verschillende soorten ruimtelijk gebruik, om aan te geven hoe de behoeftes tot verplaatsing is.
+                Op hogere zoomlevels zijn individuele gebouwen en hun functie zichtbaar.
+                Grote gebouwen worden zichtbaar vanaf zoomlevel 13, alle gebouwen zijn zichtbaar
+                vanaf zoomlevel 15.

@@ -1,0 +1,11 @@
+locale: en
+phrases:
+    scenes:
+        TOMUrbanTypologies:
+            name: Urban Typologies
+            group: Urban
+            description: >
+                This map shows shows different types of areas grouped in a way to show how people need to move through urban areas.
+                On higher zoomlevels, individual buildings and their typologies start appearing.
+                Big buildings are starting to appear from zoomlevel 13, all buildings
+                show from zoomlevel 15 and up.
